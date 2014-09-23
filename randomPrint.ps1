@@ -1,12 +1,12 @@
 ﻿
 
-$colAverages = @()
+$documents = @()
 do {
     $docPath = Read-Host 'Enter the path of the document you would like to print (e.g. "c:/document.docx")'
     Write-Host $docPath
     if (-not (Test-Path $docPath)) 
     {
-        throw [System.IO.FileNotFoundException] "$docPath not found."
+        #throw [System.IO.FileNotFoundException] "$docPath not found."
     }
     $docName = Split-Path -Leaf $docPath
     $numOfCopies = Read-Host 'How many copies do you want of' $docName '(e.g. "100")'
@@ -14,16 +14,27 @@ do {
 
     $document = New-Object System.Object
     $document | Add-Member -type NoteProperty -name Path -value $docPath
-    $document | Add-Member -type NoteProperty -name Path -value $numOfCopies
-    $documents += $document
+    $document | Add-Member -type NoteProperty -name NumOfCopies -value $numOfCopies
+    
+    for($i=1 
+        $numOfCopies -le 
+        $i++)
+        {
+        Write-Host $i
+        }
 }
 while ($moreDocs -like 'y')
 
+foreach ($document in $documents)
+{
+    Write-Host $document.Path $document.NumOfCopies
+}
+
+Get-ShuffledArray
 
 
 
 
-$myArray = (1..7)
 
 Function Get-ShuffledArray
 {
