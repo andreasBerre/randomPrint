@@ -53,5 +53,5 @@ $shuffledDocuments = Shuffle $documents
 foreach ($document in $shuffledDocuments)
 {
     Write-Host 'printing: ' $document.Name', copy' $document.CopyNumber 'of' $document.NumOfCopies
-    #Start-Process -FilePath $document.Path -Verb print
+    Start-Process -FilePath $document.Path -Verb print
 }
